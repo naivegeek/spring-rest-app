@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$USER_HOME$/sts-bundle 2/workspace/Spring4HibernateExample/Spring4HibernateExample.iml" filepath="$USER_HOME$/sts-bundle 2/workspace/Spring4HibernateExample/Spring4HibernateExample.iml" />
+      <module fileurl="file://$USER_HOME$/sts-bundle 2/workspace/SpringCRUDAngularJS-master/TaskManagerApp/TaskManagerApp.iml" filepath="$USER_HOME$/sts-bundle 2/workspace/SpringCRUDAngularJS-master/TaskManagerApp/TaskManagerApp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-rest-app.iml" filepath="$PROJECT_DIR$/spring-rest-app.iml" />
+    </modules>
+  </component>
+</project>
