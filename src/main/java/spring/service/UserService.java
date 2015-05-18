@@ -18,7 +18,7 @@ public interface UserService {
 
     List<User> findUsersByCityName(String cityName);
 
-    void deleteUser(int id);
+    void deleteUser(User user);
 
     User save(User user);
 

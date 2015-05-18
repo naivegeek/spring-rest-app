@@ -15,7 +15,7 @@ public interface UserDao {
     List<User> findAllUsers();
 
     @Transactional
-    void deleteUser(int id);
+    void deleteUser(User user);
 
     List<User> findUsersByCompanyName(String companyName);
 

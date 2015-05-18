@@ -7,8 +7,6 @@ import spring.dao.UserDao;
 import spring.model.User;
 
 import java.math.BigInteger;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -22,7 +20,8 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
     @Override
     public User findUserById(int id) {
 
-        List<User> users = getSession().createQuery("from User u  where u.id = :id ").setParameter("id", id).list();
+        List<User> users = getSession().createQuery("from User u  where u.id = :id ")
+                .setParameter("id", id).list();
         User u = null;
         if (users != null && !users.isEmpty()) {
             u = users.get(0);
@@ -37,20 +36,24 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
     }
 
     @Override
-    public void deleteUser(int id) {
-
+    public void deleteUser(User user) {
+        delete(user);
     }
 
     @Override
     public List<User> findUsersByCompanyName(String companyName) {
-        List<User> users = getSession().createQuery("from User u  where u.companyName = :companyName ").setParameter("companyName", companyName).list();
+        List<User> users = getSession().createQuery("from User u  where u.companyName = :companyName ")
+                .setParameter("companyName", companyName)
+                .list();
         return users;
     }
 
     @Override
     public List<User> findUsersByCityName(String cityName) {
-        List<User> users = getSession().createQuery("from User u  where u.currentCity = :cityName ").setParameter("cityName", cityName).list();
+        List<User> users = getSession().createQuery("from User u  where u.currentCity = :cityName ")
+                .setParameter("cityName", cityName).list();
         return users;
+
     }
 
     @Override
@@ -67,6 +70,7 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
             return 0;
         }
     }
+
     @Override
     public User findUserByUsernameAndPassword(String username, String password) {
         List<User> users = getSession()
