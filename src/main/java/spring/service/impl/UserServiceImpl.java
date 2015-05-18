@@ -32,6 +32,7 @@ public class UserServiceImpl implements UserService {
         return userDao.findUsersByCompanyName(companyName);
     }
 
+    @Override
     public List<User> findUsersByCityName(String cityName) {
         return userDao.findUsersByCityName(cityName);
     }
@@ -46,12 +47,14 @@ public class UserServiceImpl implements UserService {
         return userDao.save(user);
     }
 
+    @Override
     public int isDbAlive() {
         return userDao.isDbAlive();
     }
 
-    User findUserByUsernameAndPassword ( String username, String password){
-        return userDao.findUserByUsernameAndPassword(username,password);
+    @Override
+    public User findUserByUsernameAndPassword(String username, String password) {
+        return userDao.findUserByUsernameAndPassword(username, password);
     }
 
 }
