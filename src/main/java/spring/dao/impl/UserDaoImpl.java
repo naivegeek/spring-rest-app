@@ -7,6 +7,8 @@ import spring.dao.UserDao;
 import spring.model.User;
 
 import java.math.BigInteger;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -22,7 +24,7 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
 
         List<User> users = getSession().createQuery("from User u  where u.id = :id ").setParameter("id", id).list();
         User u = null;
-        if (users != null) {
+        if (users != null && !users.isEmpty()) {
             u = users.get(0);
         }
         return u;
@@ -73,7 +75,7 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
                 .setParameter("password", password)
                 .list();
         User u = null;
-        if (users != null) {
+        if (users != null && !users.isEmpty()) {
             u = users.get(0);
         }
         return u;

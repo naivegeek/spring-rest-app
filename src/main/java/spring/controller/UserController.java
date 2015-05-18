@@ -17,16 +17,16 @@ import java.util.List;
  * Created by srinathmedala on 5/16/15.
  */
 
-@Api(value = "user", description = "Api related to User operations")
+@Api(value = "users", description = "Api related to User operations")
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/users")
 public class UserController {
 
     @Autowired
     private UserService userService;
 
     @RequestMapping(value = "login", method = RequestMethod.POST)
-    @ApiOperation(value = "Authenticate based on username and paswword ", httpMethod = "POST")
+    @ApiOperation(value = "Authenticate based on username and password ", httpMethod = "POST")
     public @ResponseBody String login(@RequestBody AuthDto authDTO) {
         String auth = "failure";
         if (authDTO != null) {
@@ -56,6 +56,8 @@ public class UserController {
     public @ResponseBody List<User> filterByCompanyName(@PathVariable("company") @ApiParam String company) {
         return userService.findUsersByCompanyName(company);
     }
+
+
 
     @RequestMapping(value = "/status", method = RequestMethod.GET)
     @ApiOperation(value = "Check whether DB is Up", httpMethod = "GET")

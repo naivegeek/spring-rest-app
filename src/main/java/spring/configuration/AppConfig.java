@@ -18,7 +18,7 @@ import org.springframework.web.servlet.view.JstlView;
 @Configuration
 @EnableWebMvc
 @EnableTransactionManagement
-@ComponentScan(basePackages = "spring")
+@ComponentScan(basePackages = "spring.*")
 public class AppConfig {
 
     @Bean

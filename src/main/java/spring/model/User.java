@@ -1,5 +1,7 @@
 package spring.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -28,12 +30,15 @@ public class User {
     private String username;
 
     @Column(name = "password", nullable = false)
+    @JsonIgnore
     private String password;
 
     @Column(name = "date_created", nullable = false)
+    @JsonIgnore
     private Date dateCreated;
 
     @Column(name = "date_updated", nullable = false)
+    @JsonIgnore
     private Date dateUpdated;
 
     @Column(name = "current_city", nullable = false)

@@ -5,13 +5,15 @@ import com.mangofactory.swagger.models.dto.ApiInfo;
 import com.mangofactory.swagger.plugin.EnableSwagger;
 import com.mangofactory.swagger.plugin.SwaggerSpringMvcPlugin;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.*;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @Configuration
 @EnableSwagger
 @EnableWebMvc
+@ComponentScan("spring.configuration")
+@PropertySource("classpath:swagger.properties")
+@Import(SpringSwaggerConfig.class)
 public class SwaggerConfig {
 
     private SpringSwaggerConfig springSwaggerConfig;
@@ -27,7 +29,7 @@ public class SwaggerConfig {
 
         return new SwaggerSpringMvcPlugin(this.springSwaggerConfig)
                 .apiInfo(apiInfo())
-                .includePatterns("/*.*"); // assuming the API lives at something like http://myapp/api
+                .includePatterns("/*.*");
     }
 
     private ApiInfo apiInfo() {
