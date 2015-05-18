@@ -3,7 +3,7 @@ package spring.dto;
 /**
  * Created by srinathmedala on 5/17/15.
  */
-public class AuthDto {
+public class AuthDTO {
 
     String username;
 

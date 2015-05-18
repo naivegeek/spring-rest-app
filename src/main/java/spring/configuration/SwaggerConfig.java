@@ -11,7 +11,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @Configuration
 @EnableSwagger
 @EnableWebMvc
-@ComponentScan("spring.configuration")
+@ComponentScan("spring.*")
 @PropertySource("classpath:swagger.properties")
 @Import(SpringSwaggerConfig.class)
 public class SwaggerConfig {
@@ -29,7 +29,8 @@ public class SwaggerConfig {
 
         return new SwaggerSpringMvcPlugin(this.springSwaggerConfig)
                 .apiInfo(apiInfo())
-                .includePatterns("/*.*");
+                //.includePatterns("/*.*");
+                .includePatterns("http://localhost:8080");
     }
 
     private ApiInfo apiInfo() {
