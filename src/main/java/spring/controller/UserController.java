@@ -5,6 +5,7 @@ import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import spring.dto.AuthDto;
 import spring.model.User;
 import spring.service.UserService;
 
@@ -24,6 +25,20 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @RequestMapping(value = "login", method = RequestMethod.POST )
+    @ApiOperation(value ="Authenticate based on username and paswword ",httpMethod = "POST")
+    public @ResponseBody String login(@RequestBody AuthDto authDTO){
+        String auth = "failure";
+        if(authDTO!=null){
+           User user = userService.findUserByUsernameAndPassword(authDTO.getUsername(),authDTO.getPassword());
+           if(user!=null) {
+             auth ="success"  ;
+           }
+        }
+        return auth;
+    }
+
+
     @RequestMapping(value = "/all",method = RequestMethod.GET)
     @ApiOperation(value ="Get List of all Users",httpMethod = "GET")
     public @ResponseBody List<User> getAllUsers(){
@@ -33,13 +48,13 @@ public class UserController {
 
     @RequestMapping(value = "/filter/city/{city}",method = RequestMethod.GET)
     @ApiOperation(value ="Filter User By city name",httpMethod = "GET")
-    public @ResponseBody List<User> filterByCityName(@PathVariable("city")@ApiParam String cityName){
+    public @ResponseBody List<User> filterByCityName(@PathVariable("city") @ApiParam String cityName){
         return userService.findUsersByCityName(cityName);
     }
 
     @RequestMapping(value = "/filter/company/{company}",method = RequestMethod.GET)
     @ApiOperation(value ="Filter User By company name",httpMethod = "GET")
-    public @ResponseBody List<User> filterByCompanyName(@PathVariable("company")@ApiParam String company){
+    public @ResponseBody List<User> filterByCompanyName(@PathVariable("company") @ApiParam String company){
         return userService.findUsersByCompanyName(company);
     }
 
@@ -64,7 +79,7 @@ public class UserController {
         if(directory!=null) {
             File[] fList = directory.listFiles();
             for (File file : fList) {
-                if (file.isFile()) {
+                if (file!=null && file.isFile()) {
                     files.add(file.getName());
                 }
             }

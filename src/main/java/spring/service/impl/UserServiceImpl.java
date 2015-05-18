@@ -49,4 +49,9 @@ public class UserServiceImpl implements UserService {
     public int isDbAlive() {
         return userDao.isDbAlive();
     }
+
+    User findUserByUsernameAndPassword ( String username, String password){
+        return userDao.findUserByUsernameAndPassword(username,password);
+    }
+
 }

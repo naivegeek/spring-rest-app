@@ -17,12 +17,15 @@ public interface UserDao {
     @Transactional
     void deleteUser(int id);
 
-    List<User> findUsersByCompanyName( String companyName);
+    List<User> findUsersByCompanyName(String companyName);
+
     List<User> findUsersByCityName(String cityName);
 
     @Transactional
-    User save (User user);
+    User save(User user);
 
     int isDbAlive();
+
+    User findUserByUsernameAndPassword(String username, String password);
 
 }

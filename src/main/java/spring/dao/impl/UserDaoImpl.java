@@ -20,10 +20,10 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
     @Override
     public User findUserById(int id) {
 
-        List<User> users = getSession().createQuery("from User u  where u.id = :id ").setParameter("id",id).list();
+        List<User> users = getSession().createQuery("from User u  where u.id = :id ").setParameter("id", id).list();
         User u = null;
-        if(users!=null){
-           u = users.get(0);
+        if (users != null) {
+            u = users.get(0);
         }
         return u;
     }
@@ -41,12 +41,13 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
 
     @Override
     public List<User> findUsersByCompanyName(String companyName) {
-        List<User> users = getSession().createQuery("from User u  where u.companyName = :companyName ").setParameter("companyName",companyName).list();
+        List<User> users = getSession().createQuery("from User u  where u.companyName = :companyName ").setParameter("companyName", companyName).list();
         return users;
     }
 
+    @Override
     public List<User> findUsersByCityName(String cityName) {
-        List<User> users = getSession().createQuery("from User u  where u.currentCity = :cityName ").setParameter("cityName",cityName).list();
+        List<User> users = getSession().createQuery("from User u  where u.currentCity = :cityName ").setParameter("cityName", cityName).list();
         return users;
     }
 
@@ -55,14 +56,26 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
         return save(user);
     }
 
+    @Override
     public int isDbAlive() {
         BigInteger count = (BigInteger) getSession().createSQLQuery("select count(*)").uniqueResult();
-        if(count!=null){
+        if (count != null) {
             return count.intValue();
-        }else{
+        } else {
             return 0;
         }
     }
-
-
+    @Override
+    public User findUserByUsernameAndPassword(String username, String password) {
+        List<User> users = getSession()
+                .createQuery("from User u  where u.username = :username and u.password = :password ")
+                .setParameter("username", username)
+                .setParameter("password", password)
+                .list();
+        User u = null;
+        if (users != null) {
+            u = users.get(0);
+        }
+        return u;
+    }
 }
