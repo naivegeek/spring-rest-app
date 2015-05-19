@@ -1,15 +1,26 @@
 package spring.controller;
 
-import com.wordnik.swagger.annotations.*;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+
 import spring.dto.AuthDTO;
 import spring.model.User;
 import spring.service.UserService;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
+import com.wordnik.swagger.annotations.Api;
+import com.wordnik.swagger.annotations.ApiOperation;
+import com.wordnik.swagger.annotations.ApiParam;
+import com.wordnik.swagger.annotations.ApiResponse;
+import com.wordnik.swagger.annotations.ApiResponses;
 
 /**
  * Created by srinathmedala on 5/16/15.
@@ -25,13 +36,10 @@ public class UserController {
 
     @RequestMapping(value = "login", method = RequestMethod.POST)
     @ApiOperation(value = "Authenticate based on username and password ", httpMethod = "POST")
-    @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "SUCCESS"),
+    @ApiResponses(value = { @ApiResponse(code = 200, message = "SUCCESS"),
             @ApiResponse(code = 500, message = "SERVER ERROR"),
-            @ApiResponse(code = 400, message = "Invalid request params")})
-    public
-    @ResponseBody
-    String login(@RequestBody AuthDTO authDTO) {
+            @ApiResponse(code = 400, message = "Invalid request params") })
+    public @ResponseBody String login(@RequestBody AuthDTO authDTO) {
         String auth = "failure";
         if (authDTO != null) {
             User user = userService.findUserByUsernameAndPassword(authDTO.getUsername(), authDTO.getPassword());
@@ -44,51 +52,37 @@ public class UserController {
 
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     @ApiOperation(value = "Get List of all Users", httpMethod = "GET")
-    @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "SUCCESS"),
+    @ApiResponses(value = { @ApiResponse(code = 200, message = "SUCCESS"),
             @ApiResponse(code = 500, message = "SERVER ERROR"),
-            @ApiResponse(code = 400, message = "Invalid request params")})
-    public
-    @ResponseBody
-    List<User> getAllUsers() {
+            @ApiResponse(code = 400, message = "Invalid request params") })
+    public @ResponseBody List<User> getAllUsers() {
         return userService.findAllUsers();
     }
 
-
     @RequestMapping(value = "/filter/city/{city}", method = RequestMethod.GET)
     @ApiOperation(value = "Filter User By city name", httpMethod = "GET")
-    @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "SUCCESS"),
+    @ApiResponses(value = { @ApiResponse(code = 200, message = "SUCCESS"),
             @ApiResponse(code = 500, message = "SERVER ERROR"),
-            @ApiResponse(code = 400, message = "Invalid request params")})
-    public
-    @ResponseBody
-    List<User> filterByCityName(@PathVariable("city") @ApiParam String cityName) {
+            @ApiResponse(code = 400, message = "Invalid request params") })
+    public @ResponseBody List<User> filterByCityName(@PathVariable("city") @ApiParam String cityName) {
         return userService.findUsersByCityName(cityName);
     }
 
     @RequestMapping(value = "/filter/company/{company}", method = RequestMethod.GET)
     @ApiOperation(value = "Filter User By company name", httpMethod = "GET")
-    @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "SUCCESS"),
+    @ApiResponses(value = { @ApiResponse(code = 200, message = "SUCCESS"),
             @ApiResponse(code = 500, message = "SERVER ERROR"),
-            @ApiResponse(code = 400, message = "Invalid request params")})
-    public
-    @ResponseBody
-    List<User> filterByCompanyName(@PathVariable("company") @ApiParam String company) {
+            @ApiResponse(code = 400, message = "Invalid request params") })
+    public @ResponseBody List<User> filterByCompanyName(@PathVariable("company") @ApiParam String company) {
         return userService.findUsersByCompanyName(company);
     }
 
-
     @RequestMapping(value = "/status", method = RequestMethod.GET)
     @ApiOperation(value = "Check whether DB is Up", httpMethod = "GET")
-    @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "SUCCESS"),
+    @ApiResponses(value = { @ApiResponse(code = 200, message = "SUCCESS"),
             @ApiResponse(code = 500, message = "SERVER ERROR"),
-            @ApiResponse(code = 400, message = "Invalid request params")})
-    public
-    @ResponseBody
-    String checkAppDependentComponentsAlive() {
+            @ApiResponse(code = 400, message = "Invalid request params") })
+    public @ResponseBody String checkAppDependentComponentsAlive() {
         String status = "DB is up";
         String dbDown = "DB is down";
         if (userService.isDbAlive() == 1) {
@@ -100,13 +94,10 @@ public class UserController {
 
     @RequestMapping(value = "/listFiles/{directoryName}", method = RequestMethod.GET)
     @ApiOperation(value = "Lists all Files under given Directory", httpMethod = "GET")
-    @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "SUCCESS"),
+    @ApiResponses(value = { @ApiResponse(code = 200, message = "SUCCESS"),
             @ApiResponse(code = 500, message = "SERVER ERROR"),
-            @ApiResponse(code = 400, message = "Invalid request params")})
-    public
-    @ResponseBody
-    List<String> listAllFiles(@PathVariable("directoryName") @ApiParam String directoryName) {
+            @ApiResponse(code = 400, message = "Invalid request params") })
+    public @ResponseBody List<String> listAllFiles(@PathVariable("directoryName") @ApiParam String directoryName) {
         List<String> files = new ArrayList<String>();
         File directory = new File(directoryName);
         if (directory != null) {

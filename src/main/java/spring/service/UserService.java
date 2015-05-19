@@ -1,8 +1,8 @@
 package spring.service;
 
-import spring.model.User;
-
 import java.util.List;
+
+import spring.model.User;
 
 /**
  * Created by srinathmedala on 5/16/15.

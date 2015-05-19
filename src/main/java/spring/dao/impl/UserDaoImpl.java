@@ -1,16 +1,17 @@
 package spring.dao.impl;
 
+import java.math.BigInteger;
+import java.util.List;
+
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+
 import spring.dao.AbstractDao;
 import spring.dao.UserDao;
 import spring.model.User;
 
-import java.math.BigInteger;
-import java.util.List;
-
 /**
- * Created by srinathmedala on 5/16/15.
+ * Created by srinath medala on 5/16/15.
  */
 
 @Repository("userDao")
@@ -20,8 +21,8 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
     @Override
     public User findUserById(int id) {
 
-        List<User> users = getSession().createQuery("from User u  where u.id = :id ")
-                .setParameter("id", id).list();
+        @SuppressWarnings("unchecked")
+        List<User> users = getSession().createQuery("from User u  where u.id = :id ").setParameter("id", id).list();
         User u = null;
         if (users != null && !users.isEmpty()) {
             u = users.get(0);
@@ -29,6 +30,7 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
         return u;
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public List<User> findAllUsers() {
         List<User> users = getSession().createQuery("from User u ").list();
@@ -40,16 +42,17 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
         delete(user);
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public List<User> findUsersByCompanyName(String companyName) {
         List<User> users = getSession().createQuery("from User u  where u.companyName = :companyName ")
-                .setParameter("companyName", companyName)
-                .list();
+                .setParameter("companyName", companyName).list();
         return users;
     }
 
     @Override
     public List<User> findUsersByCityName(String cityName) {
+        @SuppressWarnings("unchecked")
         List<User> users = getSession().createQuery("from User u  where u.currentCity = :cityName ")
                 .setParameter("cityName", cityName).list();
         return users;
@@ -71,13 +74,12 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
         }
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public User findUserByUsernameAndPassword(String username, String password) {
         List<User> users = getSession()
                 .createQuery("from User u  where u.username = :username and u.password = :password ")
-                .setParameter("username", username)
-                .setParameter("password", password)
-                .list();
+                .setParameter("username", username).setParameter("password", password).list();
         User u = null;
         if (users != null && !users.isEmpty()) {
             u = users.get(0);
