@@ -15,7 +15,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <start-class>spring.configuration.SpringRestAppApplication</start-class>
         <!--<java.version>1.8</java.version>-->
-        <springframework.version>4.1.6.RELEASE</springframework.version>swagg
+        <springframework.version>4.1.6.RELEASE</springframework.version>
         <hibernate.version>4.3.10.Final</hibernate.version>
         <mysql.version>5.1.31</mysql.version>
         <joda-time.version>2.3</joda-time.version>
@@ -53,7 +53,6 @@
         </dependency>
 
         <!-- Swagger -->
-
         <dependency>
             <groupId>com.mangofactory</groupId>
             <artifactId>swagger-springmvc</artifactId>
@@ -75,19 +74,6 @@
             <version>${mysql.version}</version>
         </dependency>
 
-        <!-- Joda-Time -->
-        <dependency>
-            <groupId>joda-time</groupId>
-            <artifactId>joda-time</artifactId>
-            <version>${joda-time.version}</version>
-        </dependency>
-
-        <!-- To map JodaTime with database type -->
-        <dependency>
-            <groupId>org.jadira.usertype</groupId>
-            <artifactId>usertype.core</artifactId>
-            <version>3.0.0.CR1</version>
-        </dependency>
 
         <!-- Logging with SLF4J & LogBack -->
         <dependency>
@@ -169,27 +155,8 @@
             <artifactId>jackson-core</artifactId>
             <version>2.5.3</version>
         </dependency>
-       <dependency>
-            <groupId>org.ajar</groupId>
-            <artifactId>swagger-spring-mvc-ui</artifactId>
-            <version>0.1</version>
-            <scope>compile</scope>
-        </dependency>
-
-       <!-- <dependency>
-            <groupId>org.webjars</groupId>
-            <artifactId>swagger-ui</artifactId>
-            <version>2.0.12</version>
-        </dependency> -->
-
     </dependencies>
-    <repositories>
-        <repository>
-            <id>oss-jfrog-artifactory</id>
-            <name>oss-jfrog-artifactory-releases</name>
-            <url>http://oss.jfrog.org/artifactory/oss-release-local</url>
-        </repository>
-    </repositories>
+
     <build>
         <pluginManagement>
             <plugins>

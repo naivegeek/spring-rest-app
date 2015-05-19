@@ -1,7 +1,7 @@
 package spring.contoller;
 
-import org.junit.Test;
 import org.junit.Assert;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -50,11 +50,50 @@ public class UserControllerIntegrationTest {
     }
 
     @Test
-    public void testAllUsers(){
-       List<User> users = userController.getAllUsers();
-       Assert.assertTrue(users!=null && users.size()>=4);
+    public void testAllUsers() {
+        List<User> users = userController.getAllUsers();
+        Assert.assertTrue(users != null && users.size() >= 4);
     }
 
+    @Test
+    public void testUserByCity() {
+        List<User> users = userController.filterByCityName("NewYork");
+        Assert.assertTrue(users != null && users.size() > 0);
+
+        users = userController.filterByCityName("culvercity");
+        Assert.assertTrue(users != null && users.size() > 0);
+
+
+        users = userController.filterByCityName("westwood");
+        Assert.assertTrue(users != null && users.size() > 0);
+
+        users = userController.filterByCityName("silverlake");
+        Assert.assertTrue(users != null && users.size() == 0);
+    }
+
+    @Test
+    public void testUserByCompany() {
+
+        List<User> users = userController.filterByCompanyName("MGO");
+        Assert.assertTrue(users != null && users.size() > 0);
+
+        users = userController.filterByCompanyName("Hulu");
+        Assert.assertTrue(users != null && users.size() > 0);
+
+        users = userController.filterByCompanyName("Netflix");
+        Assert.assertTrue(users != null && users.size() > 0);
+
+        /* Failure Case*/
+        users = userController.filterByCompanyName("Amazon");
+        Assert.assertTrue(users != null && users.size() == 0);
+    }
+
+
+    @Test
+    public void testDbUp(){
+        String result = userController.checkAppDependentComponentsAlive();
+        Assert.assertTrue("DB is up".equals(result));
+    }
 
 
 

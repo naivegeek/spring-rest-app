@@ -29,8 +29,8 @@ public class SwaggerConfig {
 
         return new SwaggerSpringMvcPlugin(this.springSwaggerConfig)
                 .apiInfo(apiInfo())
-                //.includePatterns("/*.*");
-                .includePatterns("http://localhost:8080");
+                .includePatterns("/*.*");
+                //.includePatterns("http://localhost:8080");
     }
 
     private ApiInfo apiInfo() {

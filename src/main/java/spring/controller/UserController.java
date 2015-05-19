@@ -89,7 +89,7 @@ public class UserController {
     public
     @ResponseBody
     String checkAppDependentComponentsAlive() {
-        String status = " DB is up";
+        String status = "DB is up";
         String dbDown = "DB is down";
         if (userService.isDbAlive() == 1) {
             return status;
