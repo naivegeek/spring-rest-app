@@ -1,0 +1,12 @@
+/Users/srinathmedala/work/spring-rest-app/src/main/java/spring/model/User.java
+/Users/srinathmedala/work/spring-rest-app/src/main/java/spring/configuration/AppConfig.java
+/Users/srinathmedala/work/spring-rest-app/src/main/java/spring/service/UserService.java
+/Users/srinathmedala/work/spring-rest-app/src/main/java/spring/configuration/HibernateConfiguration.java
+/Users/srinathmedala/work/spring-rest-app/src/main/java/spring/dao/UserDao.java
+/Users/srinathmedala/work/spring-rest-app/src/main/java/spring/service/impl/UserServiceImpl.java
+/Users/srinathmedala/work/spring-rest-app/src/main/java/spring/dao/impl/UserDaoImpl.java
+/Users/srinathmedala/work/spring-rest-app/src/main/java/spring/configuration/AppInitializer.java
+/Users/srinathmedala/work/spring-rest-app/src/main/java/spring/configuration/SwaggerConfig.java
+/Users/srinathmedala/work/spring-rest-app/src/main/java/spring/dao/AbstractDao.java
+/Users/srinathmedala/work/spring-rest-app/src/main/java/spring/controller/UserController.java
+/Users/srinathmedala/work/spring-rest-app/src/main/java/spring/dto/AuthDTO.java

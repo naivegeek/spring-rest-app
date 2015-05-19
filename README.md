@@ -18,7 +18,11 @@ jdbc.username = root
 jdbc.password =
 
 2) Build the application using maven and deploy in Tomcat 7.2
-mvn install pom.xml
+mvn install 
+In the target folder you will be having the spring-rest-app.war
+
+Just copy to webapps folder in tomcat and start tomcat.
+
 
 3) Test cases
 
